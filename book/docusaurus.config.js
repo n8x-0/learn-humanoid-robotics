@@ -11,15 +11,16 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io',
+  url: 'https://n8x-0.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages. If your repo is https://github.com/username/repo-name, then baseUrl should be '/repo-name/'
-  baseUrl: '/',
+  // For user/organization sites, baseUrl should be '/'
+  baseUrl: '/learn-humanoid-robotics/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-username', // Usually your GitHub org/user name.
-  projectName: 'hackathon_2_claude', // Usually your repo name.
+  organizationName: 'n8x-0', // Usually your GitHub org/user name.
+  projectName: 'learn-humanoid-robotics', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   markdown: {
@@ -45,7 +46,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/your-username/hackathon_2_claude/tree/main/book/',
+          editUrl: 'https://github.com/n8x-0/learn-humanoid-robotics/tree/main/book/',
         },
         blog: false, // Disable blog
         theme: {
@@ -79,7 +80,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/your-username/hackathon_2_claude',
+            href: 'https://github.com/n8x-0/learn-humanoid-robotics',
             label: 'GitHub',
             position: 'right',
           },
@@ -123,7 +124,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/your-username/hackathon_2_claude',
+                href: 'https://github.com/n8x-0/learn-humanoid-robotics',
               },
             ],
           },
