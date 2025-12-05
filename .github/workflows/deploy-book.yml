@@ -46,6 +46,9 @@ jobs:
           RAG_API_BASE_URL: ${{ secrets.RAG_API_BASE_URL || 'http://localhost:8000' }}
         run: npm run build
 
+      - name: Add .nojekyll file
+        run: touch book/build/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
