@@ -1,0 +1,7 @@
+{
+  "extends": ["docusaurus"],
+  "rules": {
+    "react/prop-types": "off"
+  }
+}
+

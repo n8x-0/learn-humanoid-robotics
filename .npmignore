@@ -1,0 +1,11 @@
+# .npmignore
+
+node_modules/
+dist/
+build/
+coverage/
+.git/
+.docusaurus/
+.cache/
+*.log*
+.env*

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+book/node_modules/
+rag-api/__pycache__/
+rag-api/.venv/
+rag-api/venv/
+*.pyc
+__pycache__/
+
+# Build outputs
+book/build/
+book/.docusaurus/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+rag-api/.env
+book/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
