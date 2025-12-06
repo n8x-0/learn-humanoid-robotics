@@ -25,7 +25,7 @@ app = FastAPI(
     description="RAG chatbot API for Physical AI & Humanoid Robotics textbook",
     version="1.0.0"
 )
-app.state.app = app # Store the app instance in its own state
+app.state.app = app # Store the app instance in its own state;
 
     # CORS configuration
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
