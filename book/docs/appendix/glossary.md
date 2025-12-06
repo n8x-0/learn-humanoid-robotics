@@ -59,3 +59,24 @@ description: Key terms and definitions
 
 **VLA (Vision-Language-Action)**: AI systems that combine vision, language understanding, and physical action.
 
+## Diagrams
+
+```mermaid
+graph TD
+    Sensor --> Perception[Perception]
+    Perception --> DigitalTwin[Digital Twin]
+    DigitalTwin --> ROS2[ROS 2]
+    ROS2 --> Robot[Humanoid Robot]
+    Robot --> Actuator
+    Actuator --> PhysicalAI[Physical AI]
+    Perception --> PhysicalAI
+```
+
+## References
+
+- **General Robotics**: Siciliano, B., Khatib, O. (Eds.). (2016). *Springer Handbook of Robotics*. Springer.
+- **ROS 2**: The official ROS 2 Documentation: [https://docs.ros.org/en/humble/](https://docs.ros.org/en/humble/)
+- **Digital Twins**: Grieves, M., & Vickers, G. (2017). Digital Twin: Mitigating the Risks of Integrating Imperfect Models of Complex Systems in the Cloud. In *Transdisciplinary Perspectives on Complex Systems: New Findings and Approaches* (pp. 85-115). Springer.
+- **NVIDIA Isaac Sim**: NVIDIA Isaac Sim Documentation: [https://docs.omniverse.nvidia.com/isaacsim/latest/index.html](https://docs.omniverse.nvidia.com/isaacsim/latest/index.html)
+- **Humanoid Robotics**: Pratt, G. A., & Pratt, J. E. (2002). Intuitive control of a humanoid robot. In *Humanoid Robots, 2002. Proceedings. 2nd IEEE-RAS International Conference on* (pp. 267-272). IEEE.
+- **Conversational AI**: Jurafsky, D., & Martin, J. H. (2009). *Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition*. Prentice Hall.

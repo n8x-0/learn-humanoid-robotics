@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
-const API_BASE_URL = 'http://localhost:8000';
-
 export default function ChatWidget() {
+  const { siteConfig } = useDocusaurusContext();
+  const API_BASE_URL = siteConfig.themeConfig.apiBaseUrl;
+
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState('full'); // 'full' or 'selection'
   const [messages, setMessages] = useState([]);
@@ -11,6 +13,7 @@ export default function ChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedText, setSelectedText] = useState('');
   const [selectionLocked, setSelectionLocked] = useState(false); // Lock selection when in selection mode
+  const [apiError, setApiError] = useState(false); // New state for API error
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
@@ -116,14 +119,17 @@ export default function ChatWidget() {
       ]);
     } catch (error) {
       console.error('Chat error:', error);
+      // Restore user input and show specific error message
+      setInput(userMessage); 
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content: 'Sorry, I encountered an error. Please try again.',
+          content: 'The chatbot is currently unavailable. Please try again later.',
           error: true,
         },
       ]);
+      setApiError(true); // Set API error state
     } finally {
       setIsLoading(false);
     }

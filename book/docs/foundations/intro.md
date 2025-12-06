@@ -46,3 +46,16 @@ See the [Lab Setup Guide](/docs/appendix/hardware) for detailed instructions on:
 - [Week 1: Introduction to Physical AI](/docs/foundations/week1)
 - [Week 2: Sensor Systems and Perception](/docs/foundations/week2)
 
+## Diagrams
+
+```mermaid
+graph TD
+    S[Sensing] --> C[Control]
+    A[Actuation] --> C
+    C --> A
+    C --> S
+    subgraph Physical AI Core
+        S & A & C
+    end
+    Env[Real World Environment] -- Interacts with --> Physical_AI_Core
+```

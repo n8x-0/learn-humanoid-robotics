@@ -27,10 +27,10 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Create mono-repo folders: `book/`, `rag-api/`, `scripts/`, `infra/`
-- [ ] T002 [P] Add root `README.md` with dev commands
-- [ ] T003 [P] Add `.env.example` for book + rag-api
-- [ ] T004 [P] Add lint/format configs (prettier/eslint for book; ruff/black for rag-api)
+- [x] T001 [P] Create mono-repo folders: `book/`, `rag-api/`, `scripts/`, `infra/`
+- [x] T002 [P] Add root `README.md` with dev commands
+- [x] T003 [P] Add `.env.example` for book + rag-api
+- [x] T004 [P] Add lint/format configs (prettier/eslint for book; ruff/black for rag-api)
 
 ---
 
@@ -41,19 +41,19 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 ### Implementation for Docusaurus Book
 
-- [ ] T005 [P] [US1] Initialize Docusaurus in `/book`
-- [ ] T006 [P] [US1] Configure navbar, footer, sidebars for modules/weeks in `book/docusaurus.config.js` and `book/sidebars.js`
-- [ ] T007 [P] [US1] Create chapter template MDX with required sections in `book/docs/templates/chapter.mdx`
-- [ ] T008 [US1] Write Foundations of Physical AI (Weeks 1–2) content in `book/docs/foundations/`
-- [ ] T009 [US1] Write ROS 2 Nervous System (Weeks 3–5) content in `book/docs/ros2/`
-- [ ] T010 [US1] Write Gazebo + Unity Digital Twin (Weeks 6–7) content in `book/docs/digital-twin/`
-- [ ] T011 [US1] Write NVIDIA Isaac Platform (Weeks 8–10) content in `book/docs/isaac/`
-- [ ] T012 [US1] Write Humanoid Dev (Weeks 11–12) content in `book/docs/humanoid-dev/`
-- [ ] T013 [US1] Write Conversational Robotics (Week 13) content in `book/docs/conversational-robotics/`
-- [ ] T014 [US1] Write Capstone project guide + rubric content in `book/docs/capstone/`
-- [ ] T015 [US1] Write Hardware requirements + Ether Lab option content in `book/docs/appendix/hardware.mdx`
-- [ ] T016 [P] [US1] Add Mermaid diagrams per chapter (e.g., in `book/docs/ros2/chapter1.mdx`)
-- [ ] T017 [P] [US1] Add glossary + references section in `book/docs/appendix/glossary.mdx`
+- [x] T005 [P] [US1] Initialize Docusaurus in `/book`
+- [x] T006 [P] [US1] Configure navbar, footer, sidebars for modules/weeks in `book/docusaurus.config.js` and `book/sidebars.js`
+- [x] T007 [P] [US1] Create chapter template MDX with required sections in `book/docs/templates/chapter.mdx`
+- [x] T008 [US1] Write Foundations of Physical AI (Weeks 1–2) content in `book/docs/foundations/`
+- [x] T009 [US1] Write ROS 2 Nervous System (Weeks 3–5) content in `book/docs/ros2/`
+- [x] T010 [US1] Write Gazebo + Unity Digital Twin (Weeks 6–7) content in `book/docs/digital-twin/`
+- [x] T011 [US1] Write NVIDIA Isaac Platform (Weeks 8–10) content in `book/docs/isaac/`
+- [x] T012 [US1] Write Humanoid Dev (Weeks 11–12) content in `book/docs/humanoid-dev/`
+- [x] T013 [US1] Write Conversational Robotics (Week 13) content in `book/docs/conversational-robotics/`
+- [x] T014 [US1] Write Capstone project guide + rubric content in `book/docs/capstone/`
+- [x] T015 [US1] Write Hardware requirements + Ether Lab option content in `book/docs/appendix/hardware.mdx`
+- [x] T016 [P] [US1] Add Mermaid diagrams per chapter (e.g., in `book/docs/ros2/chapter1.mdx`)
+- [x] T017 [P] [US1] Add glossary + references section in `book/docs/appendix/glossary.mdx`
 
 ---
 
@@ -61,14 +61,14 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 **Purpose**: Setup the necessary databases for RAG metadata and vector embeddings.
 
-- [ ] T018 [P] Create Neon database + tables:
-  - [ ] T019 [P] `documents` table
-  - [ ] T020 [P] `chunks` table
-  - [ ] T021 [P] `users` table (optional for bonus features)
-  - [ ] T022 [P] `chat_logs` table
-  - [ ] T023 [P] `personalization_cache` table (optional for bonus features)
-  - [ ] T024 [P] `translations_cache` table (optional for bonus features)
-- [ ] T025 [P] Create Qdrant collection with payload schema
+- [x] T018 [P] Create Neon database + tables:
+  - [x] T019 [P] `documents` table
+  - [x] T020 [P] `chunks` table
+  - [x] T021 [P] `users` table (optional for bonus features)
+  - [x] T022 [P] `chat_logs` table
+  - [x] T023 [P] `personalization_cache` table (optional for bonus features)
+  - [x] T024 [P] `translations_cache` table (optional for bonus features)
+- [x] T025 [P] Create Qdrant collection with payload schema
 
 ---
 
@@ -93,20 +93,20 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 ### Implementation for RAG API
 
-- [ ] T030 [P] Scaffold FastAPI project in `/rag-api`
-- [ ] T031 [P] [US2] Implement `/health` endpoint in `rag-api/app/main.py`
-- [ ] T032 [US2] Implement `/chat` endpoint:
-  - [ ] T033 [US2] embed query
-  - [ ] T034 [US2] retrieve from Qdrant
-  - [ ] T035 [US2] format context with citations
-  - [ ] T036 [US2] respond with answer + citation list
-- [ ] T037 [US3] Implement `/chat/selection` endpoint:
-  - [ ] T038 [US3] accept selection text + question
-  - [ ] T039 [US3] answer strictly from selection-only
-  - [ ] T040 [US3] return citations pointing to selection (or “selection” tag)
-- [ ] T041 [P] [US2, US3] Implement `/ingest` (dev/admin) endpoint in `rag-api/app/main.py`:
-  - [ ] T042 [P] [US2, US3] trigger indexing script or accept payload
-- [ ] T043 [P] [US2, US3] Add CORS config + basic rate limiting in `rag-api/app/main.py`
+- [x] T030 [P] Scaffold FastAPI project in `/rag-api`
+- [x] T031 [P] [US2] Implement `/health` endpoint in `rag-api/app/main.py`
+- [x] T032 [US2] Implement `/chat` endpoint:
+  - [x] T033 [US2] embed query
+  - [x] T034 [US2] retrieve from Qdrant
+  - [x] T035 [US2] format context with citations
+  - [x] T036 [US2] respond with answer + citation list
+- [x] T037 [US3] Implement `/chat/selection` endpoint:
+  - [x] T038 [US3] accept selection text + question
+  - [x] T039 [US3] answer strictly from selection-only
+  - [x] T040 [US3] return citations pointing to selection (or “selection” tag)
+- [x] T041 [P] [US2, US3] Implement `/ingest` (dev/admin) endpoint in `rag-api/app/main.py`:
+  - [x] T042 [P] [US2, US3] trigger indexing script or accept payload
+- [x] T043 [P] [US2, US3] Add CORS config + basic rate limiting in `rag-api/app/main.py`
 
 ---
 
@@ -120,12 +120,12 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 ### Implementation for Chat UI in Docusaurus
 
-- [ ] T044 [P] [US2, US3] Create React Chat widget component in `book/src/components/ChatWidget/`
-- [ ] T045 [P] [US2, US3] Add floating button + panel UI in `book/src/theme/Root.js`
-- [ ] T046 [US3] Add selection capture button in `book/src/components/ChatWidget/`
-- [ ] T047 [P] [US2, US3] Add mode toggle (full vs selection) in `book/src/components/ChatWidget/`
-- [ ] T048 [P] [US2, US3] Render citations as links in `book/src/components/ChatWidget/`
-- [ ] T049 [P] [US2, US3] Add config for API base URL in `book/docusaurus.config.js`
+- [x] T044 [P] [US2, US3] Create React Chat widget component in `book/src/components/ChatWidget/`
+- [x] T045 [P] [US2, US3] Add floating button + panel UI in `book/src/theme/Root.js`
+- [x] T046 [US3] Add selection capture button in `book/src/components/ChatWidget/`
+- [x] T047 [P] [US2, US3] Add mode toggle (full vs selection) in `book/src/components/ChatWidget/`
+- [x] T048 [P] [US2, US3] Render citations as links in `book/src/components/ChatWidget/`
+- [x] T049 [P] [US2, US3] Add config for API base URL in `book/docusaurus.config.js`
 
 ---
 
@@ -133,10 +133,10 @@ description: "Task list for Physical AI & Humanoid Robotics Textbook + RAG Chatb
 
 **Purpose**: Deploy the Docusaurus site and RAG API.
 
-- [ ] T050 [P] GitHub Actions for Docusaurus build + deploy to Pages in `.github/workflows/deploy-book.yml`
-- [ ] T051 Document RAG API deployment steps in `infra/README.md`
-- [ ] T052 Set environment variables in deployment target for RAG API
-- [ ] T053 End-to-end smoke test checklist
+- [x] T050 [P] GitHub Actions for Docusaurus build + deploy to Pages in `.github/workflows/deploy-book.yml`
+- [x] T051 Document RAG API deployment steps in `infra/README.md`
+- [x] T052 Set environment variables in deployment target for RAG API
+- [x] T053 End-to-end smoke test checklist
 
 ---
 

@@ -11,15 +11,15 @@ The plan outlines the phased implementation for the "Physical AI & Humanoid Robo
 
 ## Technical Context
 
-**Package Manager**: uv for python, npm for JavaScript.
-**Language/Version**: Python (FastAPI), JavaScript/TypeScript (Docusaurus) - Specific versions will be determined during Phase 0.
-**Primary Dependencies**: FastAPI, Neon Serverless Postgres, Qdrant Cloud, OpenAI Agents/ChatKit SDKs, Docusaurus, GitHub Actions.
+**Package Manager**: `uv` for Python, `npm` for JavaScript/TypeScript.
+**Language/Version**: Python 3.10+ (FastAPI), JavaScript/TypeScript (Docusaurus 3.x).
+**Primary Dependencies**: FastAPI, Neon Serverless Postgres, Qdrant Cloud, OpenAI Agents SDK (with custom Gemini adapter), Docusaurus, GitHub Actions.
 **Storage**: Neon Serverless Postgres (metadata: documents, chunks, users, chat logs), Qdrant Cloud (vectors).
-**Testing**: `npm run build` for Docusaurus, API health checks (`/rag-api/health`), RAG chatbot acceptance tests (full corpus and selected text only modes).
-**Target Platform**: GitHub Pages (Docusaurus frontend), Container/Managed Platform (FastAPI backend).
+**Testing**: `pytest` for Python backend (unit, integration), `npm run build` for Docusaurus frontend, API health checks (`/rag-api/health`), RAG chatbot acceptance tests (full corpus and selected text only modes) implemented via end-to-end tests or dedicated integration tests.
+**Target Platform**: GitHub Pages (Docusaurus frontend), Container/Managed Platform (FastAPI backend - e.g., Docker, Kubernetes, Cloud Run).
 **Project Type**: Monorepo (`/book`, `/rag-api`, `/infra`, `/scripts`) with a Docusaurus-based web application (frontend) and a FastAPI service (backend).
 **Performance Goals**: `/rag-api/health` endpoint MUST return a 200 OK status within 50ms. RAG chatbot in both modes MUST correctly answer 95% of questions.
-**Constraints**: API keys in environment variables, CORS properly configured, no secrets in repository, rate limit protection (optional).
+**Constraints**: API keys in environment variables, CORS properly configured, no secrets in repository, rate limit protection (optional, to be considered).
 
 ## Constitution Check
 

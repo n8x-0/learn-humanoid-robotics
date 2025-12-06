@@ -56,12 +56,12 @@ const config = {
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
-      navbar: {
+        themeConfig:
+      /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+      ({
+        apiBaseUrl: process.env.RAG_API_BASE_URL || 'http://localhost:8000',
+        // Replace with your project's social card
+        image: 'img/docusaurus-social-card.jpg',      navbar: {
         title: 'Physical AI & Humanoid Robotics',
         logo: {
           alt: 'Physical AI Logo',

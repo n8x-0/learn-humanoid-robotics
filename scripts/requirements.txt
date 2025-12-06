@@ -1,5 +1,6 @@
 psycopg2-binary>=2.9.9
 qdrant-client>=1.7.0
 openai>=1.12.0
+google-generativeai>=0.5.4
 pyyaml>=6.0.1
 

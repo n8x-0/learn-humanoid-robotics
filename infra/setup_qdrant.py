@@ -19,7 +19,7 @@ def setup_qdrant_collection(
     url: str,
     api_key: str,
     collection_name: str = "physical_ai_textbook",
-    vector_size: int = 1536  # OpenAI text-embedding-3-small dimension
+    vector_size: int = 768  # Gemini text-embedding-004 dimension
 ):
     """Create Qdrant collection for document embeddings"""
     try:

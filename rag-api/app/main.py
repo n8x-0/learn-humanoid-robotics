@@ -19,14 +19,15 @@ from collections import defaultdict
 
 load_dotenv()
 
-# Initialize FastAPI app
+    # Initialize FastAPI app
 app = FastAPI(
     title="Physical AI Textbook RAG API",
     description="RAG chatbot API for Physical AI & Humanoid Robotics textbook",
     version="1.0.0"
 )
+app.state.app = app # Store the app instance in its own state
 
-# CORS configuration
+    # CORS configuration
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 app.add_middleware(
     CORSMiddleware,

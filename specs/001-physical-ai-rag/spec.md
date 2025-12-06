@@ -83,7 +83,7 @@ Users can highlight specific text on a page and ask the chatbot a question, cons
 - **FR-018**: Metadata (documents, chunks, users, chat logs) MUST be stored in Neon Serverless Postgres.
 - **FR-019**: Document chunking MUST be performed by heading sections, preserving stable `doc_id`, `section_id`, and `url`.
 - **FR-020**: Retrieval MUST include vector retrieval.
-- **FR-021**: LLM orchestration MUST use OpenAI Agents/ChatKit SDKs with tool-driven patterns (retrieval, citation formatter, selection constraint).
+- **FR-021**: LLM orchestration MUST use the OpenAI Agents SDK, configured via a custom-developed adapter to use a Gemini API key. The implementation team is responsible for creating this adapter.
 - **FR-022**: API keys for the backend MUST be stored in environment variables, not in the repository.
 - **FR-023**: CORS MUST be properly configured to allow the frontend domain.
 - **FR-024**: The repository MUST have a `/book` directory for the Docusaurus site.
@@ -91,6 +91,10 @@ Users can highlight specific text on a page and ask the chatbot a question, cons
 - **FR-026**: The repository MUST have an `/infra` directory for Qdrant/Neon setup and ingestion scripts.
 - **FR-027**: The repository MUST have a `/scripts` directory for doc chunking, embedding, and upload.
 - **FR-028**: The root `README.md` MUST include one-command local development instructions.
+
+### Non-Functional Requirements
+
+- **NFR-001**: The system SHOULD be designed to handle up to 50 textbook chapters/sections and 100 concurrent RAG chatbot users.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -111,7 +115,11 @@ Users can highlight specific text on a page and ask the chatbot a question, cons
 - **SC-005**: The `/rag-api/health` endpoint MUST return a 200 OK status within 50ms.
 - **SC-006**: The chatbot's citation links MUST reliably navigate to the correct section within the Docusaurus site.
 
-## Clarifications (Optional but Scaffold)
+## Clarifications
+
+### Session 2025-12-06
+- Q: What are the anticipated maximum number of textbook chapters/sections and concurrent RAG chatbot users? → A: Up to 50 chapters/sections and 100 concurrent users.
+- Q: The OpenAI Agents SDK is built for OpenAI models. To use a Gemini API key, a custom adapter or compatibility layer will likely be needed. How should the implementation proceed? → A: The implementation team is responsible for creating a custom adapter to make the OpenAI SDK compatible with the Gemini API.
 
 ### Bonus Features
 

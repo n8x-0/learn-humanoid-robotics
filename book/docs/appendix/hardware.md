@@ -98,3 +98,20 @@ sudo apt install gazebo11 -y
 - Review [Safety Guidelines](/docs/preface/intro#safety--ethics)
 - Set up your chosen hardware track
 
+## Diagrams
+
+```mermaid
+graph TD
+    OnPremise[On-Premise Setup] --> LocalPC[Local Development PC]
+    OnPremise --> PhysicalRobot[Physical Robot Hardware]
+
+    EtherLab[Cloud "Ether Lab" Setup] --> RemoteAccess[Remote Access (VPN/SSH)]
+    RemoteAccess --> CloudRobot[Cloud-Based Robot/Simulation]
+
+    LocalPC -- Connects To --> PhysicalRobot
+    LocalPC -- Connects To --> RemoteAccess
+
+    subgraph Hardware Options
+        OnPremise & EtherLab
+    end
+```

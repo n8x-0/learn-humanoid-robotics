@@ -1,0 +1,15 @@
+# .dockerignore
+.git/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.log*
+.env*
+coverage/
+dist/
+build/
+*.tmp
+*.temp
+Dockerfile*
+.dockerignore

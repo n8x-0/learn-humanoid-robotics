@@ -51,10 +51,10 @@ def main():
         help='Qdrant API key'
     )
     parser.add_argument(
-        '--openai-api-key',
+        '--gemini-api-key',
         type=str,
-        default=os.getenv('OPENAI_API_KEY'),
-        help='OpenAI API key'
+        default=os.getenv('GEMINI_API_KEY'),
+        help='Gemini API key'
     )
     parser.add_argument(
         '--collection',
@@ -79,8 +79,8 @@ def main():
         if not args.qdrant_url or not args.qdrant_api_key:
             print("Error: QDRANT_URL and QDRANT_API_KEY required for embedding")
             sys.exit(1)
-        if not args.openai_api_key:
-            print("Error: OPENAI_API_KEY required for embedding")
+        if not args.gemini_api_key:
+            print("Error: GEMINI_API_KEY required for embedding")
             sys.exit(1)
     
     docs_dir = Path(args.docs_dir)
@@ -127,7 +127,7 @@ def main():
             db_connection_string=args.db_url,
             qdrant_url=args.qdrant_url,
             qdrant_api_key=args.qdrant_api_key,
-            openai_api_key=args.openai_api_key,
+            gemini_api_key=args.gemini_api_key,
             collection_name=args.collection
         )
         
