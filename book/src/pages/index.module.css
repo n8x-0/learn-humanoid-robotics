@@ -35,9 +35,28 @@
   padding: 1rem;
 }
 
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  background: var(--ifm-color-primary);
+  border-radius: 12px;
+  color: white;
+  font-size: 32px;
+}
+
+.featureIcon svg {
+  width: 32px;
+  height: 32px;
+}
+
 .feature h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .feature p {
@@ -54,5 +73,106 @@
 .feature li {
   margin: 0.5rem 0;
   line-height: 1.6;
+}
+
+.authorSection {
+  padding: 4rem 0;
+  background: var(--ifm-color-emphasis-100);
+  margin-top: 3rem;
+}
+
+[data-theme='dark'] .authorSection {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.authorCard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--ifm-background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .authorCard {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.authorCard h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--ifm-color-primary);
+}
+
+.authorInfo {
+  text-align: center;
+}
+
+.authorAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  color: var(--ifm-color-primary);
+  font-size: 120px;
+  opacity: 0.8;
+}
+
+.authorInfo h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.authorTitle {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.authorBio {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ifm-font-color-base);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.authorLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.githubLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.5rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.githubLink:hover {
+  background: var(--ifm-color-primary-dark);
+  color: white;
+  text-decoration: none;
+}
+
+.githubIcon {
+  width: 18px;
+  height: 18px;
 }
 

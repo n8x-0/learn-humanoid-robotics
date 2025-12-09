@@ -120,16 +120,20 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Author',
             items: [
               {
-                label: 'GitHub',
+                label: 'Syed Shayan Ali',
+                href: 'https://github.com/n8x-0',
+              },
+              {
+                label: 'Repository',
                 href: 'https://github.com/n8x-0/learn-humanoid-robotics',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Syed Shayan Ali. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { HiChatBubbleLeftRight, HiXMark, HiOutlineCursorArrowRays, HiOutlineTrash } from 'react-icons/hi2';
 import styles from './styles.module.css';
 
 export default function ChatWidget() {
@@ -75,48 +76,74 @@ export default function ChatWidget() {
     setInput('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
+    setApiError(false);
 
     try {
       let response;
       
       if (mode === 'selection' && selectedText) {
-        // Selection mode
-        response = await fetch(`${API_BASE_URL}/chat/selection`, {
+        // Selection mode - use highlight_query endpoint
+        response = await fetch(`${API_BASE_URL}/highlight_query`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            query: userMessage,
-            selection_text: selectedText,
+            question: userMessage,
+            selected_text: selectedText,
           }),
         });
       } else {
-        // Full corpus mode
-        response = await fetch(`${API_BASE_URL}/chat`, {
+        // Full corpus mode - use query endpoint
+        response = await fetch(`${API_BASE_URL}/query`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            query: userMessage,
+            question: userMessage,
+            top_k: 5, // Optional: number of chunks to retrieve
           }),
         });
       }
 
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        const errorText = await response.text();
+        throw new Error(`API error: ${response.status} - ${errorText}`);
       }
 
       const data = await response.json();
-      setMessages(prev => [
-        ...prev,
-        {
-          role: 'assistant',
-          content: data.answer,
-          citations: data.citations || [],
-        },
-      ]);
+      
+      // Handle response based on mode
+      if (mode === 'selection') {
+        // Highlight query returns: { answer, source_context }
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: data.answer,
+            source_context: data.source_context,
+          },
+        ]);
+      } else {
+        // Query returns: { answer, sources, chunks_used }
+        // Convert sources array to citation format
+        const citations = (data.sources || []).map((source, idx) => ({
+          url: `/docs/${source.replace(/\.md$/, '')}`,
+          file_path: source,
+          section_id: source.split('/').pop().replace(/\.md$/, ''),
+        }));
+        
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: data.answer,
+            citations: citations,
+            chunks_used: data.chunks_used || 0,
+          },
+        ]);
+      }
     } catch (error) {
       console.error('Chat error:', error);
       // Restore user input and show specific error message
@@ -129,7 +156,7 @@ export default function ChatWidget() {
           error: true,
         },
       ]);
-      setApiError(true); // Set API error state
+      setApiError(true);
     } finally {
       setIsLoading(false);
     }
@@ -202,15 +229,26 @@ export default function ChatWidget() {
             onClick={handleSelectionMode}
             title="Ask about selected text"
           >
-            📝 Ask from selection
+            <HiOutlineCursorArrowRays className={styles.buttonIcon} />
+            <span>Ask from selection</span>
           </button>
         )}
         <button
           className={styles.chatButton}
           onClick={() => setIsOpen(!isOpen)}
-          title="Open chat"
+          title={isOpen ? "Close chat" : "Open chat"}
         >
-          {isOpen ? '✕' : '💬'}
+          {isOpen ? (
+            <>
+              <HiXMark className={styles.buttonIcon} />
+              <span>Close</span>
+            </>
+          ) : (
+            <>
+              <HiChatBubbleLeftRight className={styles.buttonIcon} />
+              <span>Chat</span>
+            </>
+          )}
         </button>
       </div>
 
@@ -236,8 +274,9 @@ export default function ChatWidget() {
             <button
               className={styles.closeButton}
               onClick={() => setIsOpen(false)}
+              aria-label="Close chat"
             >
-              ✕
+              <HiXMark />
             </button>
           </div>
 
@@ -251,7 +290,7 @@ export default function ChatWidget() {
                 </p>
                 {mode === 'selection' && !selectedText && (
                   <p className={styles.warning}>
-                    ⚠️ No text selected. Please select text on the page first.
+                    No text selected. Please select text on the page first.
                   </p>
                 )}
                 {mode === 'selection' && selectedText && (
@@ -263,7 +302,8 @@ export default function ChatWidget() {
                         className={styles.clearSelectionButton}
                         title="Clear selection"
                       >
-                        ✕ Clear
+                        <HiOutlineTrash className={styles.clearIcon} />
+                        <span>Clear</span>
                       </button>
                     </div>
                     <p>{selectedText.substring(0, 150)}...</p>
@@ -293,9 +333,25 @@ export default function ChatWidget() {
                           rel="noopener noreferrer"
                           className={styles.citationLink}
                         >
-                          {citation.section_id || 'View source'}
+                          {citation.section_id || citation.file_path || 'View source'}
                         </a>
                       ))}
+                    </div>
+                  )}
+                  {msg.source_context && mode === 'selection' && (
+                    <div className={styles.citations}>
+                      <strong>Context used:</strong>
+                      <div style={{ 
+                        marginTop: '8px', 
+                        padding: '8px', 
+                        background: 'rgba(0,0,0,0.05)',
+                        borderRadius: '4px',
+                        fontSize: '12px',
+                        fontStyle: 'italic'
+                      }}>
+                        {msg.source_context.substring(0, 200)}
+                        {msg.source_context.length > 200 ? '...' : ''}
+                      </div>
                     </div>
                   )}
                 </div>

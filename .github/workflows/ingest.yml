@@ -1,0 +1,27 @@
+name: Trigger RAG Ingestion
+
+on:
+  push:
+    paths:
+      - 'book/docs/**/*.md'
+
+jobs:
+  notify-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call backend ingestion webhook
+        env:
+          RAG_BACKEND_URL: ${{ secrets.RAG_BACKEND_URL }}
+          RAG_WEBHOOK_SECRET: ${{ secrets.RAG_WEBHOOK_SECRET }}
+        run: |
+          if [ -z "$RAG_BACKEND_URL" ] || [ -z "$RAG_WEBHOOK_SECRET" ]; then
+            echo "Warning: RAG_BACKEND_URL or RAG_WEBHOOK_SECRET not set. Skipping webhook call."
+            exit 0
+          fi
+          
+          curl -X POST "$RAG_BACKEND_URL/webhook/github" \
+            -H "Authorization: Bearer $RAG_WEBHOOK_SECRET" \
+            -H "Content-Type: application/json" \
+            -d "{\"branch\": \"${{ github.ref }}\", \"commit\": \"${{ github.sha }}\"}" \
+            -f || echo "Webhook call failed, but continuing..."
+
