@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     book_docs_path: str = "../book/docs"
     
     # CORS Configuration - can be comma-separated string from env
-    cors_origins: str = "http://localhost:3000,http://localhost:5173,http://localhost:3001"
+    cors_origins: str = "http://localhost:3000,https://n8x-0.github.io"
     
     @property
     def cors_origins_list(self) -> list[str]:
