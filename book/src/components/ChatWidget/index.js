@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 export default function ChatWidget() {
   const { siteConfig } = useDocusaurusContext();
   const API_BASE_URL = siteConfig.themeConfig.apiBaseUrl;
+  const API_KEY = siteConfig.themeConfig.apiKey;
 
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState('full'); // 'full' or 'selection'
@@ -81,13 +82,20 @@ export default function ChatWidget() {
     try {
       let response;
       
+      // Build headers with optional API key
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      
+      if (API_KEY) {
+        headers['X-API-Key'] = API_KEY;
+      }
+      
       if (mode === 'selection' && selectedText) {
         // Selection mode - use highlight_query endpoint
         response = await fetch(`${API_BASE_URL}/highlight_query`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: headers,
           body: JSON.stringify({
             question: userMessage,
             selected_text: selectedText,
@@ -97,9 +105,7 @@ export default function ChatWidget() {
         // Full corpus mode - use query endpoint
         response = await fetch(`${API_BASE_URL}/query`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: headers,
           body: JSON.stringify({
             question: userMessage,
             top_k: 5, // Optional: number of chunks to retrieve
