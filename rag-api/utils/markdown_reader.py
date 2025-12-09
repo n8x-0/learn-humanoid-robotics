@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List
 import re
 
-from ..models.rag_models import MarkdownDocument, Section
+from models.rag_models import MarkdownDocument, Section
 
 
 def load_markdown_documents(base_path: str) -> List[MarkdownDocument]:

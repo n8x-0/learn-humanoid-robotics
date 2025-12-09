@@ -2,10 +2,10 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
 
-from ..models.rag_models import RAGQueryRequest, RAGQueryResponse
-from ..services.embedding import embedding_service
-from ..services.qdrant_client import qdrant_service
-from ..services.llm import llm_service
+from models.rag_models import RAGQueryRequest, RAGQueryResponse
+from services.embedding import embedding_service
+from services.qdrant_client import qdrant_service
+from services.llm import llm_service
 
 router = APIRouter(prefix="/query", tags=["query"])
 

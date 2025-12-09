@@ -32,6 +32,7 @@ Required variables:
 - `QDRANT_API_KEY`: Your Qdrant API key (if required)
 
 Optional variables:
+- `API_KEY`: API key to protect endpoints (if set, all requests must include `X-API-Key` header)
 - `GITHUB_WEBHOOK_SECRET`: Secret for GitHub webhook authentication
 - `BOOK_DOCS_PATH`: Path to markdown documents (default: `../book/docs`)
 
@@ -169,19 +170,29 @@ rag-api/
 Use curl or any HTTP client:
 
 ```bash
-# Health check
+# Health check (no API key required)
 curl http://localhost:8000/health
 
-# Query
+# Query (with API key if configured)
 curl -X POST http://localhost:8000/query \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: your-api-key-here" \
+  -d '{"question": "What is ROS 2?"}'
+
+# Or using Authorization header
+curl -X POST http://localhost:8000/query \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-api-key-here" \
   -d '{"question": "What is ROS 2?"}'
 
 # Highlight query
 curl -X POST http://localhost:8000/highlight_query \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: your-api-key-here" \
   -d '{"question": "Explain this", "selected_text": "ROS 2 is a framework..."}'
 ```
+
+**Note**: If `API_KEY` is set in your `.env`, all endpoints (except `/health`, `/docs`, `/openapi.json`) require the API key in the `X-API-Key` header or `Authorization: Bearer <key>` header.
 
 ## GitHub Actions Integration
 

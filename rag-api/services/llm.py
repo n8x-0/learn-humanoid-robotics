@@ -2,7 +2,7 @@
 from typing import List
 from openai import OpenAI
 
-from ..settings import settings
+from settings import settings
 
 
 class LLMService:

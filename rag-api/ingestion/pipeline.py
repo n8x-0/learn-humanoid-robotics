@@ -1,12 +1,12 @@
 """Ingestion pipeline for processing markdown documents."""
 from typing import List
 
-from ..utils.markdown_reader import load_markdown_documents, parse_markdown_sections
-from .chunker import chunk_sections
-from ..services.embedding import embedding_service
-from ..services.qdrant_client import qdrant_service
-from ..models.rag_models import IngestSummary, MarkdownDocument, Section, Chunk
-from ..settings import settings
+from utils.markdown_reader import load_markdown_documents, parse_markdown_sections
+from ingestion.chunker import chunk_sections
+from services.embedding import embedding_service
+from services.qdrant_client import qdrant_service
+from models.rag_models import IngestSummary, MarkdownDocument, Section, Chunk
+from settings import settings
 
 
 def run_ingestion(base_docs_path: str = None) -> IngestSummary:

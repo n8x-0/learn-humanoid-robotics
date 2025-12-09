@@ -1,10 +1,12 @@
 """Main FastAPI application."""
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 import logging
 
-from .settings import settings
-from .routers import query_router, highlight_router, webhook_router, ingest_router
+from settings import settings
+from routers import query_router, highlight_router, webhook_router, ingest_router
 
 # Configure logging
 logging.basicConfig(
@@ -13,12 +15,44 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
+class APIKeyMiddleware(BaseHTTPMiddleware):
+    """Middleware to validate API key for protected endpoints."""
+    
+    async def dispatch(self, request: Request, call_next):
+        # Skip API key check for health endpoint and docs
+        if request.url.path in ["/health", "/docs", "/openapi.json", "/redoc"]:
+            return await call_next(request)
+        
+        # If API key is not configured, allow all requests
+        if not settings.api_key:
+            return await call_next(request)
+        
+        # Check for API key in headers
+        api_key = request.headers.get("X-API-Key") or request.headers.get("Authorization")
+        
+        # Handle Bearer token format
+        if api_key and api_key.startswith("Bearer "):
+            api_key = api_key[7:]
+        
+        if not api_key or api_key != settings.api_key:
+            return JSONResponse(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                content={"detail": "Invalid or missing API key. Provide X-API-Key header or Authorization: Bearer <key>"}
+            )
+        
+        return await call_next(request)
+
+
 # Create FastAPI app
 app = FastAPI(
     title="Humanoid Robotics RAG API",
     description="RAG backend for Physical AI & Humanoid Robotics textbook",
     version="1.0.0"
 )
+
+# Add API key middleware first (before CORS)
+app.add_middleware(APIKeyMiddleware)
 
 # Configure CORS
 app.add_middleware(

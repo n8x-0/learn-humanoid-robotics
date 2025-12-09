@@ -3,7 +3,7 @@ from typing import List
 from openai import OpenAI
 import time
 
-from ..settings import settings
+from settings import settings
 
 
 class EmbeddingService:

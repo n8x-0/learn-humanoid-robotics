@@ -4,8 +4,8 @@ from typing import List, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 
-from ..settings import settings
-from ..models.rag_models import Chunk, SearchResult
+from settings import settings
+from models.rag_models import Chunk, SearchResult
 
 
 class QdrantService:

@@ -1,8 +1,8 @@
 """Highlight query router for selected text queries."""
 from fastapi import APIRouter, HTTPException
 
-from ..models.rag_models import HighlightQueryRequest, HighlightQueryResponse
-from ..services.llm import llm_service
+from models.rag_models import HighlightQueryRequest, HighlightQueryResponse
+from services.llm import llm_service
 
 router = APIRouter(prefix="/highlight_query", tags=["highlight"])
 

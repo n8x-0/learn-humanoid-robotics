@@ -1,8 +1,8 @@
 """Ingest router for manual ingestion."""
 from fastapi import APIRouter, HTTPException
 
-from ..models.rag_models import IngestSummary
-from ..ingestion.pipeline import run_ingestion
+from models.rag_models import IngestSummary
+from ingestion.pipeline import run_ingestion
 
 router = APIRouter(prefix="/ingest_book", tags=["ingest"])
 

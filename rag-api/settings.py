@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     # GitHub Webhook Configuration
     github_webhook_secret: Optional[str] = None
     
+    # API Key Configuration (for protecting endpoints)
+    api_key: Optional[str] = None
+    
     # Chunking Configuration
     chunk_max_tokens: int = 1000
     chunk_overlap_tokens: int = 100

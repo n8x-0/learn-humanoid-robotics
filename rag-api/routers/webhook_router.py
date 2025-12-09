@@ -3,9 +3,9 @@ from fastapi import APIRouter, HTTPException, Header, Depends, BackgroundTasks
 from typing import Optional
 import logging
 
-from ..models.rag_models import GitHubWebhookRequest, GitHubWebhookResponse
-from ..ingestion.pipeline import run_ingestion
-from ..settings import settings
+from models.rag_models import GitHubWebhookRequest, GitHubWebhookResponse
+from ingestion.pipeline import run_ingestion
+from settings import settings
 
 logger = logging.getLogger(__name__)
 

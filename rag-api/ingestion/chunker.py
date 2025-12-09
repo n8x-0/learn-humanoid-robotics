@@ -3,8 +3,8 @@ import re
 import tiktoken
 from typing import List
 
-from ..models.rag_models import Section, Chunk
-from ..settings import settings
+from models.rag_models import Section, Chunk
+from settings import settings
 
 
 # Initialize tokenizer (using cl100k_base for GPT-4)
