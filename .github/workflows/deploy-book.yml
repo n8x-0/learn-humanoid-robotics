@@ -44,6 +44,7 @@ jobs:
         working-directory: book
         env:
           RAG_API_BASE_URL: ${{ secrets.RAG_API_BASE_URL || 'http://localhost:8000' }}
+          RAG_API_KEY: ${{ secrets.RAG_API_KEY }}
         run: npm run build
 
       - name: Add .nojekyll file
